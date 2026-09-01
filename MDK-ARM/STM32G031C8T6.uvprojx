@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G031xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G0xx/Include;../Drivers/CMSIS/Include;..\Hardware</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G0xx/Include;../Drivers/CMSIS/Include;..\code\Hardware;..\code\Filter</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -531,24 +531,27 @@
             <File>
               <FileName>ads1232.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Hardware\ads1232.c</FilePath>
+              <FilePath>..\code\Hardware\ads1232.c</FilePath>
             </File>
             <File>
               <FileName>ads1232.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Hardware\ads1232.h</FilePath>
+              <FilePath>..\code\Hardware\ads1232.h</FilePath>
             </File>
             <File>
               <FileName>ads1232_service.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Hardware\ads1232_service.c</FilePath>
+              <FilePath>..\code\Hardware\ads1232_service.c</FilePath>
             </File>
             <File>
               <FileName>ads1232_service.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Hardware\ads1232_service.h</FilePath>
+              <FilePath>..\code\Hardware\ads1232_service.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Filter</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
