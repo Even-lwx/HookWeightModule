@@ -1,0 +1,13 @@
+ADS1232 integration
+
+Add Hardware/ads1232.c and Hardware/ads1232_service.c to the build and add
+Hardware to the compiler include paths. After MX_GPIO_Init() and MX_USART1_UART_Init(),
+call ADS1232_Init(). In the main while loop call:
+
+    ADS1232_Service10Hz(&huart1);
+
+The service emits ADS1232:<signed 24-bit value> followed by CR/LF every 100 ms,
+or ADS1232:ERR_TIMEOUT when DOUT does not become low within the read timeout.
+
+PB0 must be configured as DOUT input, PB1 as SCLK push-pull output (idle low),
+and PB2 as PDWN push-pull output. PA9/PA10 are USART1 TX/RX.

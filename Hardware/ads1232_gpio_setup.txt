@@ -1,0 +1,24 @@
+CubeMX GPIO settings for ADS1232
+
+PB0: GPIO_Input, No pull
+PB1: GPIO_Output, Push-Pull, No pull, Low speed, default level Low
+PB2: GPIO_Output, Push-Pull, No pull, Low speed, default level Low
+
+USART1: PA9 = TX, PA10 = RX, asynchronous, 115200-8-N-1.
+
+ADS1232 configuration pins are not controlled by the three MCU wires:
+for AIN1, tie A0=0 and TEMP=0; for gain 64 tie GAIN1=1 and GAIN0=0;
+for 10 SPS tie SPEED=0. Do not leave these digital inputs floating.
+
+In main.c USER CODE sections:
+
+  #include "ads1232.h"
+  #include "ads1232_service.h"
+
+After MX_GPIO_Init() and MX_USART1_UART_Init():
+
+  (void)ADS1232_Init();
+
+Inside while (1):
+
+  ADS1232_Service10Hz(&huart1);
