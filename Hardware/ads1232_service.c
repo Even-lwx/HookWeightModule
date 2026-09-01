@@ -24,13 +24,14 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart)
     next_tick += 100U;
 
     if (ADS1232_Read(&value) == HAL_OK) {
-        length = snprintf(line, sizeof(line), "ADS1232:%ld\r\n", (long)value);
+        /* FireWater sample frame: a single CSV value terminated by LF. */
+        length = snprintf(line, sizeof(line), "%ld\n", (long)value);
         if (length > 0) {
             (void)HAL_UART_Transmit(huart, (uint8_t *)line,
                                     (uint16_t)length, 20U);
         }
     } else {
-        static const uint8_t timeout_line[] = "ADS1232:ERR_TIMEOUT\r\n";
+        static const uint8_t timeout_line[] = "ERR_TIMEOUT\n";
         (void)HAL_UART_Transmit(huart, (uint8_t *)timeout_line,
                                 (uint16_t)(sizeof(timeout_line) - 1U), 20U);
     }
