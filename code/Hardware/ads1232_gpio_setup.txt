@@ -14,10 +14,12 @@ In main.c USER CODE sections:
 
   #include "ads1232.h"
   #include "ads1232_service.h"
+  #include "weight_processor.h"
 
 After MX_GPIO_Init() and MX_USART1_UART_Init():
 
   (void)ADS1232_Init();
+  WeightProcessor_Init();
 
 Inside while (1):
 

@@ -1,7 +1,7 @@
 #include "ads1232.h"
 #include <stddef.h>
 
-/* STM32G031C8T6 wiring: PB0=DOUT/DRDY, PB1=SCLK, PB2=PDWN. */
+/* STM32G031C8T6 接线：PB0=DOUT/DRDY，PB1=SCLK，PB2=PDWN。 */
 #define ADS1232_DOUT_PORT GPIOB
 #define ADS1232_DOUT_PIN  GPIO_PIN_0
 #define ADS1232_SCLK_PORT GPIOB
@@ -48,19 +48,19 @@ HAL_StatusTypeDef ADS1232_WaitReady(uint32_t timeout_ms)
     return HAL_OK;
 }
 
-HAL_StatusTypeDef ADS1232_Read(int32_t *value)
+HAL_StatusTypeDef ADS1232_ReadRaw24(uint32_t *raw24)
 {
     uint32_t raw = 0U;
     uint8_t i;
 
-    if (value == NULL) {
+    if (raw24 == NULL) {
         return HAL_ERROR;
     }
     if (ADS1232_WaitReady(120U) != HAL_OK) {
         return HAL_TIMEOUT;
     }
 
-    /* ADS1232 data is a 24-bit MSB-first two's-complement word. */
+    /* ADS1232 输出24位补码，最高位在前。 */
     for (i = 0U; i < 24U; ++i) {
         HAL_GPIO_WritePin(ADS1232_SCLK_PORT, ADS1232_SCLK_PIN, GPIO_PIN_SET);
         __NOP();
@@ -70,14 +70,33 @@ HAL_StatusTypeDef ADS1232_Read(int32_t *value)
         __NOP();
     }
 
-    /* One extra clock forces DRDY/DOUT high. Two or more extra clocks
-       would start offset calibration on ADS1232 and add about 800 ms
-       settling time at 10 SPS. Channel and gain are hardware pins. */
+    /* 读取24位数据后只追加1个时钟，使 DRDY/DOUT 恢复高电平。
+       追加2个或更多时钟会启动芯片内部偏移校准，在10 SPS模式下会增加
+       约800 ms的等待时间。通道和增益由芯片硬件引脚决定。 */
     ADS1232_ClockPulse();
 
-    if ((raw & 0x00800000UL) != 0U) {
-        raw |= 0xFF000000UL;
+    /* 原样返回 ADS1232 的 D23～D0，不进行符号扩展、缩放、零点修正或滤波。 */
+    *raw24 = raw & 0x00FFFFFFUL;
+    return HAL_OK;
+}
+
+HAL_StatusTypeDef ADS1232_Read(int32_t *value)
+{
+    uint32_t raw24;
+    HAL_StatusTypeDef status;
+
+    if (value == NULL) {
+        return HAL_ERROR;
     }
-    *value = (int32_t)raw;
+
+    status = ADS1232_ReadRaw24(&raw24);
+    if (status != HAL_OK) {
+        return status;
+    }
+
+    if ((raw24 & 0x00800000UL) != 0U) {
+        raw24 |= 0xFF000000UL;
+    }
+    *value = (int32_t)raw24;
     return HAL_OK;
 }

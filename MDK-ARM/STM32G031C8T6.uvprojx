@@ -552,6 +552,28 @@
         </Group>
         <Group>
           <GroupName>Filter</GroupName>
+          <Files>
+            <File>
+              <FileName>weight_processor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\Filter\weight_processor.c</FilePath>
+            </File>
+            <File>
+              <FileName>weight_processor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\Filter\weight_processor.h</FilePath>
+            </File>
+            <File>
+              <FileName>weight_calibration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\Filter\weight_calibration.c</FilePath>
+            </File>
+            <File>
+              <FileName>weight_calibration.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\Filter\weight_calibration.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

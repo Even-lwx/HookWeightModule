@@ -1,14 +1,27 @@
 ADS1232 integration
 
-Add Hardware/ads1232.c and Hardware/ads1232_service.c to the build and add
-Hardware to the compiler include paths. After MX_GPIO_Init() and MX_USART1_UART_Init(),
-call ADS1232_Init(). In the main while loop call:
+Add code/Hardware and code/Filter sources to the build and both directories to
+the compiler include paths. After MX_GPIO_Init() and MX_USART1_UART_Init(), call:
+
+    ADS1232_Init();
+    WeightProcessor_Init();
+
+In the main while loop call:
 
     ADS1232_Service10Hz(&huart1);
 
-The service emits the signed 24-bit value followed by LF every 100 ms,
-for example -1652662\\n. It emits ERR_TIMEOUT\\n when DOUT does not become
-low within the read timeout. This is directly compatible with FireWater.
+Every valid ADS1232 reading is emitted immediately from power-up as three
+FireWater CSV channels. During the initial warm-up, filtered and weight values
+are provisional and can contain the sensor power-on transient:
+
+    raw24_unsigned,filtered_signed_counts,weight_grams\n
+
+I0 is the untouched ADS1232 D23..D0 word represented as unsigned decimal
+(0..16777215). I1 is the signed filtered value. Example:
+
+    16763260,-13934,0.1\n
+
+It emits ERR_TIMEOUT\n when DOUT does not become low within the read timeout.
 
 PB0 must be configured as DOUT input, PB1 as SCLK push-pull output (idle low),
 and PB2 as PDWN push-pull output. PA9/PA10 are USART1 TX/RX.

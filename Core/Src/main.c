@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "ads1232.h"
 #include "ads1232_service.h"
+#include "weight_processor.h"
 
 /* USER CODE END Includes */
 
@@ -91,6 +92,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   (void)ADS1232_Init();
+  WeightProcessor_Init();
 
   /* USER CODE END 2 */
 
