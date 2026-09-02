@@ -3,6 +3,11 @@
 #include <stddef.h>
 #include <string.h>
 
+/* 上电动态零点补偿开关：
+ * 0：关闭，整个运行期间使用固定的上电零点；
+ * 1：开启，按照上电时间查表并插值补偿零点。 */
+#define WEIGHT_DYNAMIC_ZERO_ENABLE       1U
+
 #define MEDIAN_WINDOW_SIZE              3U
 #define STABILITY_WINDOW_SIZE          10U
 #define STABILITY_REQUIRED_SAMPLES     20U
@@ -221,8 +226,14 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
 
     /* 只使用提前记录并写入 Flash 的空载零点。
      * 当前ADC值可能包含真实负载，因此不能反馈到零点计算中。 */
+    #if (WEIGHT_DYNAMIC_ZERO_ENABLE != 0U)
     processor.current_profile_zero =
         WeightCalibration_GetFlashZeroRaw(elapsed_ms);
+    #else
+    /* 关闭动态补偿时固定使用0秒节点，不随时间改变。 */
+    (void)elapsed_ms;
+    processor.current_profile_zero = WeightCalibration_GetFlashZeroRaw(0UL);
+    #endif
     WeightCalibration_SetZeroRaw(processor.current_profile_zero +
                                  processor.manual_tare_offset);
     weight_x10 = WeightCalibration_Convert(filtered_raw);
