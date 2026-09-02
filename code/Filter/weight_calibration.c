@@ -32,12 +32,12 @@ static const WeightZeroNode flash_zero_profile[WEIGHT_ZERO_NODE_COUNT] = {
  * 传感器灵敏度为543.8909 counts/g。使用整数系数避免浮点运算，
  * 同时比直接使用544 counts/g保留更多计算精度。 */
 #define LINEAR_WEIGHT_NUMERATOR      100000L
-#define LINEAR_COUNTS_DENOMINATOR   5417600L
+#define LINEAR_COUNTS_DENOMINATOR   5357109L
 
 static int32_t zero_shift_counts;
 
 /* 最终重量的全局截距，单位为克，可在其他文件中直接赋值修改。 */
-float g_weight_output_offset_g = 0.0f;
+float g_weight_output_offset_g = 110.0f;
 
 static int32_t WeightOffsetToX10(void)
 {
