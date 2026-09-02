@@ -22,6 +22,7 @@ static void ReplyHelp(void)
     Reply("OK HELP\r\n");
     Reply("debug             enter debug mode\r\n");
     Reply("quick zero        zero now and auto-save (normal mode)\r\n");
+    Reply("quick cal <grams>  calibrate now and auto-save (normal mode)\r\n");
     Reply("help              show this help\r\n");
     Reply("exit              leave debug mode and resume output\r\n");
     Reply("zero              calibrate current stable value as 0g\r\n");
@@ -46,8 +47,9 @@ static void Command(char *cmd)
     if(!strcmp(cmd,"debug")){if(debug_mode)Reply("ERR ALREADY_DEBUG\r\n");else{debug_mode=1U;Reply("OK DEBUG ON; type help\r\n");}return;}
     /* quick zero 是普通模式下的快捷去零命令，执行后立即自动保存。 */
     if(!strcmp(cmd,"quick")) {
-        if (debug_mode) { Reply("ERR QUICK_ZERO_ONLY_NORMAL\r\n"); return; }
-        if (!arg || strcmp(arg, "zero")) { Reply("ERR BAD_PARAM\r\n"); return; }
+        if (debug_mode) { Reply("ERR QUICK_ONLY_NORMAL\r\n"); return; }
+        if (!arg) { Reply("ERR BAD_PARAM\r\n"); return; }
+        if (!strcmp(arg, "zero")) {
         if (!Stable(&raw)) { Reply("ERR NOT_STABLE\r\n"); return; }
         WeightCalibration_SetParameters(raw, WeightCalibration_GetSlope(), 0.0f);
         if (WeightCalibration_Save()) {
@@ -57,6 +59,26 @@ static void Command(char *cmd)
         } else {
             Reply("ERR QUICK ZERO FLASH_WRITE\r\n");
         }
+        return;
+        }
+        if (!strncmp(arg, "cal ", 4U)) {
+            if (!ParseFloat(arg + 4, &g)) { Reply("ERR BAD_PARAM\r\n"); return; }
+            if (!Stable(&raw)) { Reply("ERR NOT_STABLE\r\n"); return; }
+            WeightCalibration_SetParameters(WeightCalibration_GetZeroRaw(),
+                                            WeightCalibration_GetSlope(),
+                                            g - (raw - WeightCalibration_GetZeroRaw()) *
+                                                WeightCalibration_GetSlope());
+            if (WeightCalibration_Save()) {
+                char b[96];
+                snprintf(b, sizeof(b), "OK QUICK CAL grams=%.3f raw=%ld SAVED\r\n",
+                         g, (long)raw);
+                Reply(b);
+            } else {
+                Reply("ERR QUICK CAL FLASH_WRITE\r\n");
+            }
+            return;
+        }
+        Reply("ERR BAD_PARAM\r\n");
         return;
     }
     if(!strcmp(cmd,"exit")){if(!debug_mode)Reply("ERR NOT_DEBUG\r\n");else{slope_mode=0U;point_count=0U;debug_mode=0U;Reply("OK DEBUG OFF\r\n");}return;}
