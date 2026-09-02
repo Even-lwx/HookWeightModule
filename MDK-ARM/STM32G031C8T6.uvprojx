@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G031xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G0xx/Include;../Drivers/CMSIS/Include;..\code\Hardware;..\code\Filter</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc;../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G0xx/Include;../Drivers/CMSIS/Include;..\code\Hardware;..\code\Filter;..\code\Debug</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -572,6 +572,21 @@
               <FileName>weight_calibration.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\code\Filter\weight_calibration.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Debug</GroupName>
+          <Files>
+            <File>
+              <FileName>serial_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\Debug\serial_debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>serial_debug.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\Debug\serial_debug.h</FilePath>
             </File>
           </Files>
         </Group>

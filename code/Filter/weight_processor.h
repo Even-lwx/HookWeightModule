@@ -29,6 +29,9 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
 
 /* 只有数据已经准备好并且处于稳定状态时，才允许手动去皮。 */
 uint8_t WeightProcessor_Tare(void);
+const WeightProcessor_Result *WeightProcessor_GetLastResult(void);
+/* 放宽后的校准取点稳定判定，仅供串口校准使用。 */
+uint8_t WeightProcessor_IsCalibrationStable(void);
 
 #ifdef __cplusplus
 }

@@ -1,4 +1,6 @@
 #include "weight_calibration.h"
+#include "stm32g0xx_hal.h"
+#include <string.h>
 
 #define WEIGHT_ZERO_NODE_COUNT 21U
 
@@ -33,8 +35,15 @@ static const WeightZeroNode flash_zero_profile[WEIGHT_ZERO_NODE_COUNT] = {
  * 同时比直接使用544 counts/g保留更多计算精度。 */
 #define LINEAR_WEIGHT_NUMERATOR      100000L
 #define LINEAR_COUNTS_DENOMINATOR   5357109L
+#define CAL_FLASH_ADDR              0x0800F800UL
+#define CAL_MAGIC                   0x5743414CUL
+#define CAL_VERSION                 1U
 
 static int32_t zero_shift_counts;
+float g_weight_slope_g_per_count = (float)LINEAR_WEIGHT_NUMERATOR /
+                                   (10.0f * (float)LINEAR_COUNTS_DENOMINATOR);
+static uint8_t manual_valid;
+static uint8_t flash_valid;
 
 /* 最终重量的全局截距，单位为克，可在其他文件中直接赋值修改。 */
 float g_weight_output_offset_g = 110.0f;
@@ -63,6 +72,11 @@ static int32_t DivideRoundSigned(int64_t numerator, int32_t denominator)
 void WeightCalibration_Init(void)
 {
     WeightCalibration_SetZeroRaw(flash_zero_profile[0].zero_raw);
+    g_weight_slope_g_per_count = (float)LINEAR_WEIGHT_NUMERATOR /
+                                  (10.0f * (float)LINEAR_COUNTS_DENOMINATOR);
+    g_weight_output_offset_g = 110.0f;
+    manual_valid = 0U;
+    flash_valid = WeightCalibration_Load();
 }
 
 void WeightCalibration_SetZeroShift(int32_t shift_counts)
@@ -79,6 +93,19 @@ int32_t WeightCalibration_GetZeroRaw(void)
 {
     return zero_shift_counts;
 }
+
+void WeightCalibration_SetParameters(int32_t zero_raw, float slope, float offset)
+{
+    zero_shift_counts = zero_raw;
+    g_weight_slope_g_per_count = slope;
+    g_weight_output_offset_g = offset;
+    manual_valid = 1U;
+}
+
+float WeightCalibration_GetSlope(void) { return g_weight_slope_g_per_count; }
+float WeightCalibration_GetOffset(void) { return g_weight_output_offset_g; }
+uint8_t WeightCalibration_IsManual(void) { return manual_valid; }
+uint8_t WeightCalibration_FlashValid(void) { return flash_valid; }
 
 void WeightCalibration_SetZeroRaw(int32_t zero_raw_counts)
 {
@@ -122,10 +149,43 @@ int32_t WeightCalibration_GetFlashZeroRaw(uint32_t elapsed_ms)
 
 int32_t WeightCalibration_Convert(int32_t raw_counts)
 {
-    int64_t scaled;
+    float value = ((float)(raw_counts - zero_shift_counts) * g_weight_slope_g_per_count +
+                   g_weight_output_offset_g) * 10.0f;
+    return (value >= 0.0f) ? (int32_t)(value + 0.5f) : (int32_t)(value - 0.5f);
+}
 
-    scaled = (int64_t)(raw_counts - zero_shift_counts) *
-             (int64_t)LINEAR_WEIGHT_NUMERATOR;
-    return DivideRoundSigned(scaled, LINEAR_COUNTS_DENOMINATOR) +
-           WeightOffsetToX10();
+/* Flash 参数镜像，末尾 CRC 用于检测掉电写入或数据损坏。 */
+typedef struct { uint32_t magic; uint16_t version; uint16_t size; int32_t zero;
+                float slope; float offset; uint32_t manual; uint32_t crc; } CalFlash;
+
+static uint32_t CalCrc(const CalFlash *p)
+{
+    /* 使用轻量级滚动校验，避免引入额外 CRC 表和较大代码。 */
+    const uint8_t *b = (const uint8_t *)p; uint32_t c = 0xA5A5A5A5UL; uint32_t i;
+    for (i = 0U; i < (uint32_t)(sizeof(CalFlash) - sizeof(uint32_t)); ++i) c = (c << 5) ^ (c >> 27) ^ b[i];
+    return c;
+}
+
+uint8_t WeightCalibration_Save(void)
+{
+    /* STM32G0 按 64 位 double-word 编程，先擦除最后一页再连续写入。 */
+    CalFlash p; uint32_t i, page_error; HAL_StatusTypeDef st; FLASH_EraseInitTypeDef erase;
+    p.magic = CAL_MAGIC; p.version = CAL_VERSION; p.size = sizeof(CalFlash);
+    p.zero = zero_shift_counts; p.slope = g_weight_slope_g_per_count;
+    p.offset = g_weight_output_offset_g; p.manual = manual_valid; p.crc = CalCrc(&p);
+    erase.TypeErase = FLASH_TYPEERASE_PAGES; erase.Banks = FLASH_BANK_1; erase.Page = 31U; erase.NbPages = 1U;
+    HAL_FLASH_Unlock();
+    st = HAL_FLASHEx_Erase(&erase, &page_error);
+    if (st == HAL_OK) for (i = 0U; i < sizeof(CalFlash); i += 8U)
+        if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, CAL_FLASH_ADDR + i, *(uint64_t *)((uint8_t *)&p + i)) != HAL_OK) st = HAL_ERROR;
+    HAL_FLASH_Lock(); flash_valid = (st == HAL_OK); return (st == HAL_OK) ? 1U : 0U;
+}
+
+uint8_t WeightCalibration_Load(void)
+{
+    /* 启动时只接受 magic、版本、长度、CRC 和斜率都有效的参数。 */
+    const CalFlash *p = (const CalFlash *)CAL_FLASH_ADDR;
+    if (p->magic != CAL_MAGIC || p->version != CAL_VERSION || p->size != sizeof(CalFlash) || p->crc != CalCrc(p) || p->slope <= 0.0f) return 0U;
+    zero_shift_counts = p->zero; g_weight_slope_g_per_count = p->slope;
+    g_weight_output_offset_g = p->offset; manual_valid = p->manual ? 1U : 0U; return 1U;
 }

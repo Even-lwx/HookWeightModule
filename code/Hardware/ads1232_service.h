@@ -5,6 +5,6 @@
 #include "usart.h"
 
 /* Call once per main-loop iteration after ADS1232_Init(). */
-void ADS1232_Service10Hz(UART_HandleTypeDef *huart);
+void ADS1232_Service10Hz(UART_HandleTypeDef *huart, uint8_t output_enabled);
 
 #endif /* ADS1232_SERVICE_H */

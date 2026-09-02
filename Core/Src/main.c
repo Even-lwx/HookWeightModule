@@ -26,6 +26,7 @@
 #include "ads1232.h"
 #include "ads1232_service.h"
 #include "weight_processor.h"
+#include "serial_debug.h"
 
 /* USER CODE END Includes */
 
@@ -93,6 +94,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   (void)ADS1232_Init();
   WeightProcessor_Init();
+  SerialDebug_Init(&huart1);
 
   /* USER CODE END 2 */
 
@@ -103,7 +105,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    ADS1232_Service10Hz(&huart1);
+    SerialDebug_Process();
+    ADS1232_Service10Hz(&huart1, SerialDebug_OutputEnabled());
   }
   /* USER CODE END 3 */
 }

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stddef.h>
 
-void ADS1232_Service10Hz(UART_HandleTypeDef *huart)
+void ADS1232_Service10Hz(UART_HandleTypeDef *huart, uint8_t output_enabled)
 {
     static uint32_t next_tick;
     static uint8_t started;
@@ -35,7 +35,7 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart)
         /* 获取单片机上电后的运行时间，用于查找 Flash 中保存的动态零点。
          * 当前采样值可能已经包含负载，因此绝不使用当前值自动修正零点。 */
         (void)WeightProcessor_UpdateTimed(value, HAL_GetTick(), &result);
-        {
+        if (output_enabled) {
             int64_t weight_magnitude;
             long weight_whole;
             long weight_fraction;
@@ -62,7 +62,7 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart)
                                         (uint16_t)length, 20U);
             }
         }
-    } else {
+    } else if (output_enabled) {
         static const uint8_t timeout_line[] = "ERR_TIMEOUT\n";
         (void)HAL_UART_Transmit(huart, (uint8_t *)timeout_line,
                                 (uint16_t)(sizeof(timeout_line) - 1U), 20U);

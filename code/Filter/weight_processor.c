@@ -11,6 +11,11 @@
 #define MEDIAN_WINDOW_SIZE              3U
 #define STABILITY_WINDOW_SIZE          10U
 #define STABILITY_REQUIRED_SAMPLES     20U
+/* 校准取点允许更快确认，正常 result->stable 仍使用上面的严格阈值。 */
+/* 校准取点比正常显示使用更宽松的稳定条件，减少现场等待时间。 */
+#define CALIBRATION_REQUIRED_SAMPLES    5U
+#define CALIBRATION_STABLE_RANGE_COUNTS 216L
+#define CALIBRATION_END_TO_END_COUNTS    48L
 
 /* 以下阈值按照传感器约538 counts/g的灵敏度设置。 */
 #define FAST_ENTER_COUNTS            1076L  /* 约2.0 g，进入快速跟随模式 */
@@ -34,6 +39,7 @@ typedef struct {
     uint8_t stability_count;
     uint8_t stability_index;
     uint8_t stable_qualified_count;
+    uint8_t calibration_qualified_count;
     uint8_t fast_exit_count;
     uint8_t filter_initialized;
     uint8_t fast_mode;
@@ -42,6 +48,7 @@ typedef struct {
 } WeightProcessor_State;
 
 static WeightProcessor_State processor;
+static WeightProcessor_Result last_result;
 
 static int64_t Abs64(int64_t value)
 {
@@ -183,6 +190,18 @@ static void UpdateStability(int32_t filtered_raw)
     }
     processor.stable =
         (processor.stable_qualified_count >= STABILITY_REQUIRED_SAMPLES) ? 1U : 0U;
+
+    /* 校准取点使用较宽的窗口和较少的连续样本，避免现场等待过久；
+       该状态不会改变正常输出中的 stable 标志。 */
+    if (((maximum - minimum) <= CALIBRATION_STABLE_RANGE_COUNTS) &&
+        (end_to_end <= CALIBRATION_END_TO_END_COUNTS) &&
+        !processor.fast_mode) {
+        if (processor.calibration_qualified_count < CALIBRATION_REQUIRED_SAMPLES) {
+            ++processor.calibration_qualified_count;
+        }
+    } else {
+        processor.calibration_qualified_count = 0U;
+    }
 }
 
 void WeightProcessor_Init(void)
@@ -227,15 +246,23 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
     /* 只使用提前记录并写入 Flash 的空载零点。
      * 当前ADC值可能包含真实负载，因此不能反馈到零点计算中。 */
     #if (WEIGHT_DYNAMIC_ZERO_ENABLE != 0U)
-    processor.current_profile_zero =
-        WeightCalibration_GetFlashZeroRaw(elapsed_ms);
+    if (WeightCalibration_IsManual()) {
+        processor.current_profile_zero = WeightCalibration_GetZeroRaw();
+    } else {
+        processor.current_profile_zero =
+            WeightCalibration_GetFlashZeroRaw(elapsed_ms);
+    }
     #else
     /* 关闭动态补偿时固定使用0秒节点，不随时间改变。 */
     (void)elapsed_ms;
     processor.current_profile_zero = WeightCalibration_GetFlashZeroRaw(0UL);
     #endif
-    WeightCalibration_SetZeroRaw(processor.current_profile_zero +
-                                 processor.manual_tare_offset);
+    if (WeightCalibration_IsManual()) {
+        WeightCalibration_SetZeroRaw(processor.current_profile_zero);
+    } else {
+        WeightCalibration_SetZeroRaw(processor.current_profile_zero +
+                                     processor.manual_tare_offset);
+    }
     weight_x10 = WeightCalibration_Convert(filtered_raw);
     processor.ready = 1U;
 
@@ -246,8 +273,26 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
     result->stable = processor.stable;
     result->over_range = ((weight_x10 < OVER_RANGE_MIN_X10) ||
                           (weight_x10 > OVER_RANGE_MAX_X10)) ? 1U : 0U;
+    last_result = *result;
 
     return processor.ready;
+}
+
+const WeightProcessor_Result *WeightProcessor_GetLastResult(void)
+{
+    return &last_result;
+}
+
+uint8_t WeightProcessor_IsCalibrationStable(void)
+{
+    /* 该接口只服务于 zero/cal/point，不改变对外结果中的 stable 标志。 */
+    if (!processor.ready) {
+        return 0U;
+    }
+    if (processor.stable) {
+        return 1U;
+    }
+    return (processor.calibration_qualified_count >= CALIBRATION_REQUIRED_SAMPLES) ? 1U : 0U;
 }
 
 uint8_t WeightProcessor_Tare(void)
