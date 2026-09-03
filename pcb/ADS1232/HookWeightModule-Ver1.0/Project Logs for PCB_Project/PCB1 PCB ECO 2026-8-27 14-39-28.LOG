@@ -1,0 +1,60 @@
+Added Component: Designator=R??(R0402)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/FRC0402F1000TS/3180373.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "R0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100¦¸ ¡À1% 62.5mW ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "FOJAN(¸»½Ý)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "FRC0402F1000TS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "98c88bc2b9094f218f3a3e30a7012738"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "R0402_L1.0-W0.5-H0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "39.37,19.685,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55¡æ~+155¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power(Watts)"; Value = "62.5mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C2906860"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "FRC0402F1000TS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "¡À100ppm/¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100¦¸"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage-Supply(Max)"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=R??(R0402)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/FRC0402F1000TS/3180373.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "R0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100¦¸ ¡À1% 62.5mW ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "FOJAN(¸»½Ý)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "FRC0402F1000TS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "98c88bc2b9094f218f3a3e30a7012738"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "R0402_L1.0-W0.5-H0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "39.37,19.685,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55¡æ~+155¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power(Watts)"; Value = "62.5mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C2906860"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "FRC0402F1000TS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "¡À100ppm/¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100¦¸"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage-Supply(Max)"; Value = "50V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=AINN1 Pin=R??-1
+Added Pin To Net: NetName=AINP1 Pin=R??-1
+Add Net: Net with name "NetC??_1" already exists
+Add Net: Net with name "NetC??_2" already exists
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C?? gcm155r71h103ka55d
+Added Member To Class: ClassName=Sheet1 Member=Component R?? frc0402f1000ts
+Added Member To Class: ClassName=Sheet1 Member=Component R?? frc0402f1000ts

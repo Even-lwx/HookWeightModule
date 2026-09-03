@@ -1,0 +1,23 @@
+Change Component Footprint: Designator=C11 Old Footprint=C0402 New Footprint=C0805
+Change Component Comment : Designator=C11 Old Comment=gcm155r71h103ka55d New Comment=cl21b103kbannnc
+Change component parameters: Designator = "C11" ("C11"); Footprint = "C0402"; UniqueID = "\KLTMWAGL" ("\KLTMWAGL")
+Change component parameters (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CL21B103KBANNNC/2062.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "FootprintName"; Value = "C0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Basic Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part Name"; Value = "10nF ¡À10% 50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "SAMSUNG(ÈýÐÇ)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ManufacturerPart"; Value = "CL21B103KBANNNC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelId"; Value = "1ba041120af144c991958decab20d241"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelName"; Value = "C0805_L2.0-W1.3-H1.3"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelTransform"; Value = "78.74,51.181,0,0,0,0,0,0.0005,0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SupplierPart"; Value = "C1710"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "CL21B103KBANNNC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "10nF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sheet1 Member=Component C12 cl21b103kbannnc

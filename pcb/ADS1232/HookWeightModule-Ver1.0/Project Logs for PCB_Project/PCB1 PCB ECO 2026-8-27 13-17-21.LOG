@@ -1,0 +1,44 @@
+Added Component: Designator=H??(HDR-TH_5P-P2.54-V-M)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Circluar Pins/Square Pins"; Value = "方针"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Color"; Value = "黑色"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Material"; Value = "黄铜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Plating"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current Rating"; Value = "3A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/PZ254V-11-05P/502960.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "HDR-TH_5P-P2.54-V-M"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Insulation Height"; Value = "2.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "1x5P 间距:2.54mm 方针 直插"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Length of End Connection Pin"; Value = "3mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Length of Mating Pin"; Value = "6mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "XFCN(兴飞)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "PZ254V-11-05P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "47d466e4a34f4fc5bc626cf773a24dd5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "HDR-TH_5P-P2.54-M-LI-1X5P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "499.999,100,0,0,0,0,0,0,-118.11"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "直插"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "5P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Rows"; Value = "单排"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40℃~+105℃"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pin Structure"; Value = "1x5P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Row Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "插件,P=2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C492404"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "PZ254V-11-05P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating (Max)"; Value = "250V"; VariantName = "[No Variations]"
+Added Component: Designator=U??(5个焊盘)
+Add component (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Device"; Value = "5个焊盘"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "5个焊盘"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=H??-1
+Added Pin To Net: NetName=DGND Pin=H??-2
+Added Pin To Net: NetName=SWCLK Pin=H??-3
+Added Pin To Net: NetName=SWDIO Pin=H??-4
+Added Pin To Net: NetName=NRST Pin=H??-5
+Added Member To Class: ClassName=Sheet1 Member=Component H?? pz254v-11-05p
+Added Member To Class: ClassName=Sheet1 Member=Component U?? 5个焊盘

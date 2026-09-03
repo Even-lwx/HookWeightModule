@@ -1,0 +1,80 @@
+Removed Pin From Net: NetName=AINP1 Pin=R5-1
+Removed Pin From Net: NetName=NetC12_1 Pin=R5-2
+Removed Pin From Net: NetName=AINN1 Pin=R6-1
+Removed Pin From Net: NetName=NetC12_2 Pin=R6-2
+Change Component Footprint: Designator=C12 Old Footprint=C0402 New Footprint=C0805
+Change Component Footprint: Designator=R5 Old Footprint=R0402 New Footprint=R0603
+Change Component Footprint: Designator=R6 Old Footprint=R0402 New Footprint=R0603
+Change Component Comment : Designator=R5 Old Comment=frc0402f1000ts New Comment=frc0603f1000ts
+Change Component Comment : Designator=R6 Old Comment=frc0402f1000ts New Comment=frc0603f1000ts
+Change Component Comment : Designator=C12 Old Comment=gcm155r71h103ka55d New Comment=cl21b103kbannnc
+Change component parameters: Designator = "C12" ("C12"); Footprint = "C0402"; UniqueID = "\AQJYSIDX" ("\AQJYSIDX")
+Change component parameters (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CL21B103KBANNNC/2062.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "FootprintName"; Value = "C0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Basic Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part Name"; Value = "10nF ¡À10% 50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "SAMSUNG(ÈýÐÇ)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ManufacturerPart"; Value = "CL21B103KBANNNC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelId"; Value = "1ba041120af144c991958decab20d241"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelName"; Value = "C0805_L2.0-W1.3-H1.3"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelTransform"; Value = "78.74,51.181,0,0,0,0,0,0.0005,0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SupplierPart"; Value = "C1710"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "CL21B103KBANNNC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "10nF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R5" ("R5"); Footprint = "R0402"; UniqueID = "\GSOZBMQA" ("\GSOZBMQA")
+Change component parameters (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/FRC0603F1000TS/3180494.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "FootprintName"; Value = "R0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part Name"; Value = "100¦¸ ¡À1% 100mW ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "FOJAN(¸»½Ý)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ManufacturerPart"; Value = "FRC0603F1000TS"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelId"; Value = "fc143cca1e79419f9cd78b61e9279f08"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelName"; Value = "R0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelTransform"; Value = "31.8897,63.7794,0,90,0,0,0,0,0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Operating Temperature"; Value = "-55¡æ~+155¡æ"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Power(Watts)"; Value = "100mW"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SupplierPart"; Value = "C2906981"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "FRC0603F1000TS"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Temperature Coefficient"; Value = "¡À100ppm/¡æ"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "¡À1%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "100¦¸"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage-Supply(Max)"; Value = "75V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R6" ("R6"); Footprint = "R0402"; UniqueID = "\XJSZDLXY" ("\XJSZDLXY")
+Change component parameters (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/FRC0603F1000TS/3180494.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "FootprintName"; Value = "R0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part Name"; Value = "100¦¸ ¡À1% 100mW ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "FOJAN(¸»½Ý)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ManufacturerPart"; Value = "FRC0603F1000TS"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelId"; Value = "fc143cca1e79419f9cd78b61e9279f08"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelName"; Value = "R0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ModelTransform"; Value = "31.8897,63.7794,0,90,0,0,0,0,0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Operating Temperature"; Value = "-55¡æ~+155¡æ"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Power(Watts)"; Value = "100mW"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SupplierPart"; Value = "C2906981"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "FRC0603F1000TS"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Temperature Coefficient"; Value = "¡À100ppm/¡æ"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "¡À1%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "ºñÄ¤µç×è"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "100¦¸"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage-Supply(Max)"; Value = "75V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=AINN1 Pin=R5-1
+Added Pin To Net: NetName=NetC12_2 Pin=R5-2
+Added Pin To Net: NetName=AINP1 Pin=R6-1
+Added Pin To Net: NetName=NetC12_1 Pin=R6-2

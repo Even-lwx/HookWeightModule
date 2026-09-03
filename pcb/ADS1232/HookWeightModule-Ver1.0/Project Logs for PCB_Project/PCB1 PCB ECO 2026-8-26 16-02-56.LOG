@@ -1,0 +1,30 @@
+Change Component Designator: OldDesignator=U1 NewDesignator=U??
+Change Component Designator: OldDesignator=U2 NewDesignator=U??
+Change Component Designator: OldDesignator=X1 NewDesignator=X??
+Added Component: Designator=U??(CRYSTAL-SMD_L3.2-W1.5)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/FC31M2-32.768-NTLNNDTL/5705379.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Equivalent Series Resistance(ESR)"; Value = "70k¦¸"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "CRYSTAL-SMD_L3.2-W1.5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Frequency Stability"; Value = "¡À10ppm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "3215 2P 32.768kHz 12.5pF ¡À10ppm -40~+85¡æ(¡À10ppm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Load Capacitance"; Value = "12.5pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "HCI(º¼¾§)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "FC31M2-32.768-NTLNNDTL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "762d7afc596f4558a373612390f4386d"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "CRYSTAL-SMD_L3.2-W1.5-1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "125.984,59.055,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Normal temperature Frequency Tolerance"; Value = "¡À10ppm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40¡æ~+85¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "SMD3215-2P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C5120559"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "FC31M2-32.768-NTLNNDTL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "ÌùÆ¬¾§Õñ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "32.768kHz"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component U?? ads1232ipwr
+Added Member To Class: ClassName=Sheet1 Member=Component U?? fc31m2-32.768-ntlnndtl

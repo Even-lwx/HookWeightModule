@@ -1,0 +1,128 @@
+Removed Pin From Net: NetName=+5 Pin=U??-1
+Added Component: Designator=C?(C0603)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CGA0603X7R104K500JT/7062573.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "C0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100nF ¡À10% 50V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "HRE(Ð¾Éù)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "ac125912035d415993ca9572d50418b1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "C0603_L1.6-W0.8-H0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "62.992,31.496,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C6119867"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=C?(C0603)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CGA0603X7R104K500JT/7062573.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "C0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100nF ¡À10% 50V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "HRE(Ð¾Éù)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "ac125912035d415993ca9572d50418b1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "C0603_L1.6-W0.8-H0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "62.992,31.496,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C6119867"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=C?(C0603)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CGA0603X7R104K500JT/7062573.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "C0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100nF ¡À10% 50V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "HRE(Ð¾Éù)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "ac125912035d415993ca9572d50418b1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "C0603_L1.6-W0.8-H0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "62.992,31.496,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C6119867"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=C?(C0603)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/CGA0603X7R104K500JT/7062573.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "C0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "100nF ¡À10% 50V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "HRE(Ð¾Éù)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "ac125912035d415993ca9572d50418b1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "C0603_L1.6-W0.8-H0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "62.992,31.496,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C6119867"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "CGA0603X7R104K500JT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "¡À10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5 Pin=C?-2
+Added Pin To Net: NetName=+5 Pin=C?-2
+Added Pin To Net: NetName=+5 Pin=U??-16
+Added Pin To Net: NetName=+5 Pin=U??-18
+Added Pin To Net: NetName=+3 Pin=C?-1
+Added Pin To Net: NetName=+3 Pin=U??-1
+Added Pin To Net: NetName=+3 Pin=U??-19
+Added Pin To Net: NetName=+3 Pin=U??-20
+Added Net: Name=+3
+Added Pin To Net: NetName=AGND Pin=C?-1
+Added Pin To Net: NetName=AGND Pin=C?-1
+Added Pin To Net: NetName=AGND Pin=U??-13
+Added Pin To Net: NetName=AGND Pin=U??-14
+Added Pin To Net: NetName=AGND Pin=U??-15
+Added Pin To Net: NetName=AGND Pin=U??-17
+Added Net: Name=AGND
+Added Pin To Net: NetName=AINN1 Pin=U??-12
+Added Net: Name=AINN1
+Added Pin To Net: NetName=AINP1 Pin=U??-11
+Added Net: Name=AINP1
+Added Pin To Net: NetName=DGND Pin=C?-2
+Added Pin To Net: NetName=DGND Pin=U??-2
+Added Pin To Net: NetName=DGND Pin=U??-5
+Added Pin To Net: NetName=DGND Pin=U??-6
+Added Pin To Net: NetName=DGND Pin=U??-7
+Added Pin To Net: NetName=DGND Pin=U??-8
+Added Pin To Net: NetName=DGND Pin=U??-21
+Added Net: Name=DGND
+Added Pin To Net: NetName=DOUT Pin=U??-24
+Added Net: Name=DOUT
+Added Pin To Net: NetName=NetC??_1 Pin=C??-1
+Added Pin To Net: NetName=NetC??_1 Pin=U??-10
+Added Net: Name=NetC??_1
+Added Pin To Net: NetName=NetC??_2 Pin=C??-2
+Added Pin To Net: NetName=NetC??_2 Pin=U??-9
+Added Net: Name=NetC??_2
+Added Pin To Net: NetName=PDWN Pin=U??-22
+Added Net: Name=PDWN
+Added Pin To Net: NetName=SCLK Pin=U??-23
+Added Net: Name=SCLK
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3

@@ -1,0 +1,16 @@
+Add component: Footprint Not Found C0603
+Add component: Footprint Not Found C0603
+Add component: Footprint Not Found TSSOP-24_L7.8-W4.4-P0.65-LS6.4-BL
+Added Net: Name=+5V
+Added Net: Name=3V
+Added Net: Name=AINN1
+Added Net: Name=AINP1
+Added Net: Name=DOUT
+Added Net: Name=GND
+Added Net: Name=NetC2_1
+Added Net: Name=NetC2_2
+Added Net: Name=PDWN
+Added Net: Name=SCLK
+Added Class: Name=P1
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1

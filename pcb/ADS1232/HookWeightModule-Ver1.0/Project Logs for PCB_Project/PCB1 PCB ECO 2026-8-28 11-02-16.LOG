@@ -1,0 +1,227 @@
+Removed Pin From Net: NetName=3V3 Pin=U3-1
+Removed Pin From Net: NetName=DGND Pin=U3-2
+Removed Pin From Net: NetName=DGND Pin=U3-3
+Removed Pin From Net: NetName=DGND Pin=U3-4
+Removed Pin From Net: NetName=DGND Pin=U3-5
+Removed Pin From Net: NetName=DGND Pin=U3-6
+Removed Pin From Net: NetName=DGND Pin=U3-7
+Removed Pin From Net: NetName=DGND Pin=U3-8
+Removed Pin From Net: NetName=NetC9_2 Pin=U3-9
+Removed Pin From Net: NetName=NetC9_1 Pin=U3-10
+Removed Pin From Net: NetName=NetC13_1 Pin=U3-11
+Removed Pin From Net: NetName=NetC13_2 Pin=U3-12
+Removed Pin From Net: NetName=AGND Pin=U3-13
+Removed Pin From Net: NetName=AGND Pin=U3-14
+Removed Pin From Net: NetName=AGND Pin=U3-15
+Removed Pin From Net: NetName=5V Pin=U3-16
+Removed Pin From Net: NetName=AGND Pin=U3-17
+Removed Pin From Net: NetName=5V Pin=U3-18
+Removed Pin From Net: NetName=3V3 Pin=U3-19
+Removed Pin From Net: NetName=3V3 Pin=U3-20
+Removed Pin From Net: NetName=DGND Pin=U3-21
+Removed Pin From Net: NetName=NetR4_1 Pin=U3-22
+Removed Pin From Net: NetName=NetR3_1 Pin=U3-23
+Removed Pin From Net: NetName=NetR2_1 Pin=U3-24
+Removed Pin From Net: NetName=NetC3_2 Pin=U4-2
+Removed Pin From Net: NetName=NetC5_2 Pin=U4-3
+Removed Pin From Net: NetName=3V3 Pin=U4-4
+Removed Pin From Net: NetName=3V3 Pin=U4-5
+Removed Pin From Net: NetName=3V3 Pin=U4-6
+Removed Pin From Net: NetName=DGND Pin=U4-7
+Removed Pin From Net: NetName=NetC7_1 Pin=U4-8
+Removed Pin From Net: NetName=NetC11_2 Pin=U4-9
+Removed Pin From Net: NetName=NRST Pin=U4-10
+Removed Pin From Net: NetName=USART2_TX Pin=U4-13
+Removed Pin From Net: NetName=USART2_RX Pin=U4-14
+Removed Pin From Net: NetName=DOUT Pin=U4-19
+Removed Pin From Net: NetName=SCLK Pin=U4-20
+Removed Pin From Net: NetName=PDWN Pin=U4-21
+Removed Pin From Net: NetName=USART1_TX Pin=U4-29
+Removed Pin From Net: NetName=USART1_RX Pin=U4-32
+Removed Pin From Net: NetName=SWDIO Pin=U4-35
+Removed Pin From Net: NetName=SWCLK Pin=U4-36
+Removed Pin From Net: NetName=6V Pin=U5-1
+Removed Pin From Net: NetName=DGND Pin=U5-2
+Removed Pin From Net: NetName=6V Pin=U5-3
+Removed Pin From Net: NetName=3V3 Pin=U5-5
+Removed Pin From Net: NetName=6V Pin=U6-1
+Removed Pin From Net: NetName=DGND Pin=U6-2
+Removed Pin From Net: NetName=6V Pin=U6-3
+Removed Pin From Net: NetName=5V Pin=U6-5
+Removed Member From Class: ClassName=Sheet1 Member=U3
+Removed Member From Class: ClassName=Sheet1 Member=U4
+Removed Member From Class: ClassName=Sheet1 Member=U5
+Removed Member From Class: ClassName=Sheet1 Member=U6
+Added Component: Designator=U??(TSSOP-24_L7.8-W4.4-P0.65-LS6.4-BL)
+Add component (AddParameter): Name = "ADC architecture"; Value = "Sigma-Delta"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Clock Frequency"; Value = "4.9152MHz；200kHz~8MHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Clock/Oscillator"; Value = "内置；外置"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Data rate"; Value = "80Hz；10Hz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://www.ti.com/cn/lit/gpn/ads1232"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "differential input"; Value = "是"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "TSSOP-24_L7.8-W4.4-P0.65-LS6.4-BL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Full-Scale Range(FSR)"; Value = "39mV；1.25V；19.5mV；2.5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Integral non - linearity"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Interface"; Value = "SPI"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "用于桥式传感器的24bit 模数转换器"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "TI(德州仪器)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "ADS1232IPWR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "57e278220af748a2882c4abba4094eb9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "TSSOP-24_L7.8-W4.4-H1.0-LS6.4-P0.65"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "252.188,307.086,0,90,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "number of channels"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40℃~+105℃"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Programmable Gain"; Value = "支持"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quiescent Current (Iq)"; Value = "1.3uA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Resolution (Bits)"; Value = "24"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Sampling Rate"; Value = "10Hz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Signal-to-Noise Ratio"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "TSSOP-24"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C27919"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "ADS1232IPW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Sensors"; Value = "内置"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage - Supply"; Value = "2.7V~5.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Reference"; Value = "外置"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Reference Drift"; Value = "-"; VariantName = "[No Variations]"
+Added Component: Designator=U??(LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL)
+Add component (AddParameter): Name = "ADC (Bit)"; Value = "12bit"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Core Size"; Value = "32 Bit"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "CPU Core"; Value = "ARM Cortex-M0+"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "CPU Maximum Speed"; Value = "64MHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/STM32G031C8T6/428993.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "EEPROM"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "主流Arm Cortex-M0+ MCU，具有64 KB Flash存储器、8 KB RAM、64 MHz CPU、2x USART、定时器、ADC和通信接口，1.7-3.6V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "ST(意法半导体)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "STM32G031C8T6"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "093be70396ff421eb2cdb946d5311efc"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "LQFP-48_L7.0-W7.0-H1.4-LS9.0-P0.50"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "354.331,354.331,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of I/O"; Value = "44"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40℃~+85℃"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Oscillator Type"; Value = "内置+外置"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Program Memory Type"; Value = "FLASH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Program Storage Size"; Value = "64KB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RAM Size"; Value = "8KB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "LQFP-48(7x7)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C432205"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "STM32G031C8T6"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage - Supply"; Value = "1.7V~3.6V"; VariantName = "[No Variations]"
+Added Component: Designator=U??(SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://www.ti.com/cn/lit/gpn/tps7a20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Dropout Voltage"; Value = "140mV@(300mA)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Feature"; Value = "防静电保护；软启动；浪涌保护；低ESR；热保护(TSD)；欠压闭锁；过流保护(OCP)；带使能；防倒灌"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "具有高 PSRR 的 300mA、超低噪声、低 IQ、低压降 (LDO) 线性稳压器"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "TI(德州仪器)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "TPS7A2033PDBVR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Input Voltage"; Value = "6V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "7ba65df16e7b4570af156e925f9c37fe"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "114.173,114.173,0,90,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Outputs"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40℃~+125℃@(Tj)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Current"; Value = "300mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Polarity"; Value = "正极"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Type"; Value = "固定"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Voltage"; Value = "3.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "standby current"; Value = "15uA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "SOT-23-5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C2862740"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "TPS7A2033PDBVR"; VariantName = "[No Variations]"
+Added Component: Designator=U??(SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://www.ti.com/cn/lit/ds/symlink/tps7a20.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "使能控制；输入欠压保护；内置软启动；短路保护；过流保护；输出放电；热关断"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "800mV~5.5V 300mA 6V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "TI(德州仪器)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "TPS7A2050PDBVR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "7ba65df16e7b4570af156e925f9c37fe"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "114.173,114.173,0,90,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noise"; Value = "10uVrms"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Outputs"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40℃~+125℃@(Tj)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Configuration"; Value = "正极"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Current"; Value = "300mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Type"; Value = "固定"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Voltage"; Value = "5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power Supply Rejection Ratio (PSRR)"; Value = "65dB@(100Hz)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "standby current"; Value = "6.5uA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "SOT-23-5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C2864504"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "TPS7A2050PDBVR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage - Supply"; Value = "6V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Dropout"; Value = "140mV@(300mA)"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=U??-1
+Added Pin To Net: NetName=6V Pin=U??-1
+Added Pin To Net: NetName=6V Pin=U??-1
+Added Pin To Net: NetName=DGND Pin=U??-2
+Added Pin To Net: NetName=DGND Pin=U??-2
+Added Pin To Net: NetName=DGND Pin=U??-2
+Added Pin To Net: NetName=NetC3_2 Pin=U??-2
+Added Pin To Net: NetName=6V Pin=U??-3
+Added Pin To Net: NetName=6V Pin=U??-3
+Added Pin To Net: NetName=DGND Pin=U??-3
+Added Pin To Net: NetName=NetC5_2 Pin=U??-3
+Added Pin To Net: NetName=3V3 Pin=U??-4
+Added Pin To Net: NetName=DGND Pin=U??-4
+Added Pin To Net: NetName=3V3 Pin=U??-5
+Added Pin To Net: NetName=3V3 Pin=U??-5
+Added Pin To Net: NetName=5V Pin=U??-5
+Added Pin To Net: NetName=DGND Pin=U??-5
+Added Pin To Net: NetName=3V3 Pin=U??-6
+Added Pin To Net: NetName=DGND Pin=U??-6
+Added Pin To Net: NetName=DGND Pin=U??-7
+Added Pin To Net: NetName=DGND Pin=U??-7
+Added Pin To Net: NetName=DGND Pin=U??-8
+Added Pin To Net: NetName=NetC7_1 Pin=U??-8
+Added Pin To Net: NetName=NetC9_2 Pin=U??-9
+Added Pin To Net: NetName=NetC11_2 Pin=U??-9
+Added Pin To Net: NetName=NetC9_1 Pin=U??-10
+Added Pin To Net: NetName=NRST Pin=U??-10
+Added Pin To Net: NetName=NetC13_1 Pin=U??-11
+Added Pin To Net: NetName=NetC13_2 Pin=U??-12
+Added Pin To Net: NetName=AGND Pin=U??-13
+Added Pin To Net: NetName=USART2_TX Pin=U??-13
+Added Pin To Net: NetName=AGND Pin=U??-14
+Added Pin To Net: NetName=USART2_RX Pin=U??-14
+Added Pin To Net: NetName=AGND Pin=U??-15
+Added Pin To Net: NetName=5V Pin=U??-16
+Added Pin To Net: NetName=AGND Pin=U??-17
+Added Pin To Net: NetName=5V Pin=U??-18
+Added Pin To Net: NetName=3V3 Pin=U??-19
+Added Pin To Net: NetName=DOUT Pin=U??-19
+Added Pin To Net: NetName=3V3 Pin=U??-20
+Added Pin To Net: NetName=SCLK Pin=U??-20
+Added Pin To Net: NetName=DGND Pin=U??-21
+Added Pin To Net: NetName=PDWN Pin=U??-21
+Added Pin To Net: NetName=NetR4_1 Pin=U??-22
+Added Pin To Net: NetName=NetR3_1 Pin=U??-23
+Added Pin To Net: NetName=NetR2_1 Pin=U??-24
+Added Pin To Net: NetName=USART1_TX Pin=U??-29
+Added Pin To Net: NetName=USART1_RX Pin=U??-32
+Added Pin To Net: NetName=SWDIO Pin=U??-35
+Added Pin To Net: NetName=SWCLK Pin=U??-36
+Change Net Color : Old Net Color=RGB(158, 161, 117) New Net Color=RGB(158, 161, 117)
+Change Net Color : Old Net Color=RGB(158, 161, 117) New Net Color=RGB(158, 161, 117)
+Added Member To Class: ClassName=Sheet1 Member=Component U?? ads1232ipwr
+Added Member To Class: ClassName=Sheet1 Member=Component U?? stm32g031c8t6
+Added Member To Class: ClassName=Sheet1 Member=Component U?? tps7a2033pdbvr
+Added Member To Class: ClassName=Sheet1 Member=Component U?? tps7a2050pdbvr

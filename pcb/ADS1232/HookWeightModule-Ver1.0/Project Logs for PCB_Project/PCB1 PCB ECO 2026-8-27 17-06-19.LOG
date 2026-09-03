@@ -1,0 +1,8 @@
+Added Component: Designator=*1(M3ÂÝË¿)
+Added Component: Designator=*2(M3ÂÝË¿)
+Added Component: Designator=*3(M3ÂÝË¿)
+Added Component: Designator=*4(M3ÂÝË¿)
+Added Member To Class: ClassName=Sheet1 Member=Component *1 ÂÝË¿¿×_1
+Added Member To Class: ClassName=Sheet1 Member=Component *2 ÂÝË¿¿×_1
+Added Member To Class: ClassName=Sheet1 Member=Component *3 ÂÝË¿¿×_1
+Added Member To Class: ClassName=Sheet1 Member=Component *4 ÂÝË¿¿×_1

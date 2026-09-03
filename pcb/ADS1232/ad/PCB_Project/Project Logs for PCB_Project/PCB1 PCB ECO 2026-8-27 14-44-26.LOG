@@ -1,0 +1,51 @@
+Change Component Designator: OldDesignator=C11 NewDesignator=C12
+Change Component Designator: OldDesignator=C14 NewDesignator=C15
+Change Component Designator: OldDesignator=C15 NewDesignator=C16
+Change Component Designator: OldDesignator=C16 NewDesignator=C17
+Change Component Designator: OldDesignator=C17 NewDesignator=C18
+Change Component Designator: OldDesignator=C?? NewDesignator=C2
+Change Component Designator: OldDesignator=C?? NewDesignator=C3
+Change Component Designator: OldDesignator=C?? NewDesignator=C5
+Change Component Designator: OldDesignator=C?? NewDesignator=C6
+Change Component Designator: OldDesignator=C?? NewDesignator=C8
+Change Component Designator: OldDesignator=C?? NewDesignator=C9
+Change Component Designator: OldDesignator=C?? NewDesignator=C10
+Change Component Designator: OldDesignator=C?? NewDesignator=C11
+Change Component Designator: OldDesignator=C?? NewDesignator=C13
+Change Component Designator: OldDesignator=C?? NewDesignator=C14
+Change Component Designator: OldDesignator=R?? NewDesignator=R2
+Change Component Designator: OldDesignator=R?? NewDesignator=R3
+Change Component Designator: OldDesignator=R?? NewDesignator=R4
+Change Component Designator: OldDesignator=R?? NewDesignator=R5
+Change Component Designator: OldDesignator=R?? NewDesignator=R6
+Change Net Name : Old Net Name=NetC11_2 New Net Name=NetC12_2
+Change Net Name : Old Net Name=NetC??_1 New Net Name=NetC10_1
+Change Net Name : Old Net Name=NetC??_2 New Net Name=NetC10_2
+Change Net Name : Old Net Name=NetR??_1 New Net Name=NetR2_1
+Added Pin To Net: NetName=NetC14_1 Pin=C14-1
+Added Pin To Net: NetName=NetC14_1 Pin=R6-2
+Added Pin To Net: NetName=NetC14_1 Pin=U3-11
+Added Net: Name=NetC14_1
+Added Pin To Net: NetName=NetC14_2 Pin=C14-2
+Added Pin To Net: NetName=NetC14_2 Pin=R5-2
+Added Pin To Net: NetName=NetC14_2 Pin=U3-12
+Added Net: Name=NetC14_2
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetR3_1 Pin=U3-23
+Added Net: Name=NetR3_1
+Added Pin To Net: NetName=NetR4_1 Pin=R4-1
+Added Pin To Net: NetName=NetR4_1 Pin=U3-22
+Added Net: Name=NetR4_1
+Added Member To Class: ClassName=Sheet1 Member=Component C2 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C3 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C5 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C6 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C8 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C10 cc0402krx7r7bb104
+Added Member To Class: ClassName=Sheet1 Member=Component C12 cc0402jrnpo9bn180
+Added Member To Class: ClassName=Sheet1 Member=Component C13 gcm155r71h103ka55d
+Added Member To Class: ClassName=Sheet1 Member=Component C18 cga0603x5r105k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component R2 frc0402f47r0ts
+Added Member To Class: ClassName=Sheet1 Member=Component R3 frc0402f47r0ts
+Added Member To Class: ClassName=Sheet1 Member=Component R4 frc0402f47r0ts
+Added Member To Class: ClassName=Sheet1 Member=Component R5 frc0402f1000ts

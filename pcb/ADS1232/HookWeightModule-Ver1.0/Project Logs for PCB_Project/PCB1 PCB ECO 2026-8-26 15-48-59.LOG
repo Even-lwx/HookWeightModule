@@ -1,0 +1,28 @@
+Added Component: Designator=X??(CRYSTAL-SMD_4P-L3.2-W2.5-BL)
+Add component (AddParameter): Name = "AddInBom"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ConvertToPcb"; Value = "yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://item.szlcsc.com/datasheet/X32258MOB4SI/2777872.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Equivalent Series Resistance(ESR)"; Value = "180¦¸"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FootprintName"; Value = "CRYSTAL-SMD_4P-L3.2-W2.5-BL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Frequency Stability"; Value = "¡À20ppm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LCSC Part Name"; Value = "YSX321SL 8MHZ 4P 3225 12PF ¡À10PPM -40~85¡æ (¡À20PPM)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Load Capacitance"; Value = "12pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "YXC(ÑïÐË¾§Õñ)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ManufacturerPart"; Value = "X32258MOB4SI"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelId"; Value = "ff2dfd5650294453a14147960efe1838"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelName"; Value = "CRYSTAL-SMD_4P-L3.2-W2.5-BL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ModelTransform"; Value = "125.984,98.425,0,0,0,0,0,0,0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Normal temperature Frequency Tolerance"; Value = "¡À10ppm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40¡æ~+85¡æ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Footprint"; Value = "SMD3225-4P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SupplierPart"; Value = "C2682775"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Symbol"; Value = "X32258MOB4SI"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "ÌùÆ¬¾§Õñ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "8MHz"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component C? cga0603x7r104k500jt
+Added Member To Class: ClassName=Sheet1 Member=Component U?? ads1232ipwr
+Added Member To Class: ClassName=Sheet1 Member=Component X?? x32258mob4si
