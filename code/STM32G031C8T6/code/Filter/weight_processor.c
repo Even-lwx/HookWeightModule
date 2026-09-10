@@ -233,6 +233,7 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
     int32_t median_raw;
     int32_t filtered_raw;
     int32_t weight_x10;
+    int32_t weight_x1000;
 
     if (result == NULL) {
         return 0U;
@@ -264,11 +265,13 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
                                      processor.manual_tare_offset);
     }
     weight_x10 = WeightCalibration_Convert(filtered_raw);
+    weight_x1000 = WeightCalibration_ConvertX1000(filtered_raw);
     processor.ready = 1U;
 
     result->raw = raw;
     result->filtered_raw = filtered_raw;
     result->weight_x10 = weight_x10;
+    result->weight_x1000 = weight_x1000;
     result->ready = processor.ready;
     result->stable = processor.stable;
     result->over_range = ((weight_x10 < OVER_RANGE_MIN_X10) ||

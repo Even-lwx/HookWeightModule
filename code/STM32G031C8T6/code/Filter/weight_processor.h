@@ -11,6 +11,7 @@ typedef struct {
     int32_t raw;
     int32_t filtered_raw;
     int32_t weight_x10;
+    int32_t weight_x1000;
     uint8_t ready;
     uint8_t stable;
     uint8_t over_range;
