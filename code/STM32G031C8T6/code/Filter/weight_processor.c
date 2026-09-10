@@ -8,7 +8,7 @@
  * 1：开启，按照上电时间查表并插值补偿零点。 */
 #define WEIGHT_DYNAMIC_ZERO_ENABLE       1U
 
-#define MEDIAN_WINDOW_SIZE              3U
+#define MEDIAN_WINDOW_SIZE              5U
 #define STABILITY_WINDOW_SIZE          10U
 #define STABILITY_REQUIRED_SAMPLES     20U
 /* 校准取点允许更快确认，正常 result->stable 仍使用上面的严格阈值。 */
@@ -26,10 +26,24 @@
 #define OVER_RANGE_MIN_X10                0L
 #define OVER_RANGE_MAX_X10            10000L
 
+/* 第二级：一维标量卡尔曼滤波（常数位+随机游走模型），全程定点无浮点。
+ * 输入为5点中值结果。依据10Hz静止日志，中值5后残差噪声标准差约10~12 counts，
+ * 测量噪声方差 R 取 144（counts^2）。静止时 Q_SLOW=16，稳态 P=sqrt(R*Q)=48，
+ * 稳态增益 K=P/(P+R)=0.25，平滑力度与上位机参考滤波I1相当；重量阶跃期间切到
+ * Q_FAST=144（K约0.50）快速跟随，并在进入快速档瞬间抬升P避免第一拍滞后。
+ * 参数依据 log/新传感器测长时间稳定性 与 log/新传感器新PCB 实测数据标定。 */
+#define KALMAN_MEAS_NOISE_R             144L
+#define KALMAN_PROCESS_NOISE_Q_SLOW      8L
+#define KALMAN_PROCESS_NOISE_Q_FAST     144L
+#define KALMAN_INIT_P                    48L
+#define KALMAN_FAST_P_BOOST             144L
+#define KALMAN_Q16_ONE                65536L
+
 typedef struct {
     int32_t median_values[MEDIAN_WINDOW_SIZE];
     int32_t stability_values[STABILITY_WINDOW_SIZE];
     int64_t filtered_q8;
+    int32_t kf_p;                       /* 卡尔曼估计协方差P，单位counts^2 */
     int32_t last_filtered_raw;
     uint32_t fallback_elapsed_ms;
     int32_t manual_tare_offset;
@@ -55,25 +69,28 @@ static int64_t Abs64(int64_t value)
     return (value < 0) ? -value : value;
 }
 
-static int32_t Median3(int32_t a, int32_t b, int32_t c)
+static int32_t Median5(const int32_t *values)
 {
-    int32_t temporary;
+    int32_t sorted[MEDIAN_WINDOW_SIZE];
+    uint8_t i;
+    uint8_t j;
+    int32_t key;
 
-    /* 对连续3个采样值排序并返回中间值，用来抑制单点尖峰。 */
-    if (a > b) {
-        temporary = a;
-        a = b;
-        b = temporary;
+    for (i = 0U; i < MEDIAN_WINDOW_SIZE; ++i) {
+        sorted[i] = values[i];
     }
-    if (b > c) {
-        temporary = b;
-        b = c;
-        c = temporary;
+
+    /* 固定5点插入排序后取中间值，用来抑制单点尖峰；10Hz下开销可忽略。 */
+    for (i = 1U; i < MEDIAN_WINDOW_SIZE; ++i) {
+        key = sorted[i];
+        j = i;
+        while ((j > 0U) && (sorted[j - 1U] > key)) {
+            sorted[j] = sorted[j - 1U];
+            --j;
+        }
+        sorted[j] = key;
     }
-    if (a > b) {
-        b = a;
-    }
-    return b;
+    return sorted[MEDIAN_WINDOW_SIZE / 2U];
 }
 
 static int32_t UpdateMedian(int32_t raw)
@@ -87,51 +104,69 @@ static int32_t UpdateMedian(int32_t raw)
         return raw;
     }
 
-    return Median3(processor.median_values[0],
-                   processor.median_values[1],
-                   processor.median_values[2]);
+    return Median5(processor.median_values);
 }
 
-static int32_t UpdateAdaptiveIir(int32_t median_raw)
+static int32_t UpdateKalman(int32_t median_raw)
 {
     int64_t target_q8;
-    int64_t difference_q8;
+    int64_t innovation_q8;
     int64_t difference_counts;
+    int32_t process_noise_q;
+    int32_t innovation_variance;
+    int32_t gain_q16;
 
-    /* 使用Q8定点数保存滤波状态，避免引入浮点运算。 */
+    /* 状态值使用Q8定点保存，避免在Cortex-M0+上引入浮点运算。 */
     target_q8 = (int64_t)median_raw * 256L;
     if (!processor.filter_initialized) {
         processor.filtered_q8 = target_q8;
+        processor.kf_p = (int32_t)KALMAN_INIT_P;
         processor.filter_initialized = 1U;
-    } else {
-        difference_q8 = target_q8 - processor.filtered_q8;
-        difference_counts = Abs64(difference_q8) / 256L;
+        return median_raw;
+    }
 
-        /* 变化较大时快速跟随真实重量阶跃；变化较小时加强平滑。 */
-        if (difference_counts > FAST_ENTER_COUNTS) {
-            processor.fast_mode = 1U;
-            processor.fast_exit_count = 0U;
-        } else if (processor.fast_mode) {
-            if (difference_counts < FAST_EXIT_COUNTS) {
-                if (processor.fast_exit_count < FAST_EXIT_REQUIRED_SAMPLES) {
-                    ++processor.fast_exit_count;
-                }
-                if (processor.fast_exit_count >= FAST_EXIT_REQUIRED_SAMPLES) {
-                    processor.fast_mode = 0U;
-                    processor.fast_exit_count = 0U;
-                }
-            } else {
+    innovation_q8 = target_q8 - processor.filtered_q8;
+    difference_counts = Abs64(innovation_q8) / 256L;
+
+    /* 变化较大时快速跟随真实重量阶跃；变化较小时加强平滑。 */
+    if (difference_counts > FAST_ENTER_COUNTS) {
+        processor.fast_mode = 1U;
+        processor.fast_exit_count = 0U;
+    } else if (processor.fast_mode) {
+        if (difference_counts < FAST_EXIT_COUNTS) {
+            if (processor.fast_exit_count < FAST_EXIT_REQUIRED_SAMPLES) {
+                ++processor.fast_exit_count;
+            }
+            if (processor.fast_exit_count >= FAST_EXIT_REQUIRED_SAMPLES) {
+                processor.fast_mode = 0U;
                 processor.fast_exit_count = 0U;
             }
-        }
-
-        difference_q8 = target_q8 - processor.filtered_q8;
-        if (processor.fast_mode) {
-            processor.filtered_q8 += difference_q8 / 2L;
         } else {
-            processor.filtered_q8 += difference_q8 / 4L;
+            processor.fast_exit_count = 0U;
         }
     }
+
+    /* 预测步：P^- = P + Q，快速档使用更大的过程噪声以提高增益。 */
+    process_noise_q = processor.fast_mode ?
+                      (int32_t)KALMAN_PROCESS_NOISE_Q_FAST :
+                      (int32_t)KALMAN_PROCESS_NOISE_Q_SLOW;
+    processor.kf_p += process_noise_q;
+    /* 刚进入快速档时立即把P抬升，让阶跃第一拍就有约0.5的增益。 */
+    if (processor.fast_mode &&
+        (processor.kf_p < (int32_t)KALMAN_FAST_P_BOOST)) {
+        processor.kf_p = (int32_t)KALMAN_FAST_P_BOOST;
+    }
+
+    /* 更新步：K = P^- / (P^- + R)，增益用Q16定点表示。 */
+    innovation_variance = processor.kf_p + (int32_t)KALMAN_MEAS_NOISE_R;
+    gain_q16 = (int32_t)(((int64_t)processor.kf_p * KALMAN_Q16_ONE) /
+                         innovation_variance);
+    /* x = x^- + K * (z - x^-) */
+    processor.filtered_q8 += (innovation_q8 * (int64_t)gain_q16) /
+                             KALMAN_Q16_ONE;
+    /* P = (1 - K) * P^- */
+    processor.kf_p -= (int32_t)(((int64_t)processor.kf_p * gain_q16) /
+                                KALMAN_Q16_ONE);
 
     if (processor.filtered_q8 >= 0) {
         return (int32_t)((processor.filtered_q8 + 128L) / 256L);
@@ -239,8 +274,9 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
         return 0U;
     }
 
+    /* 第一级：5点中值滤波抑制单点尖峰；第二级：标量卡尔曼平滑并快速跟随阶跃。 */
     median_raw = UpdateMedian(raw);
-    filtered_raw = UpdateAdaptiveIir(median_raw);
+    filtered_raw = UpdateKalman(median_raw);
     processor.last_filtered_raw = filtered_raw;
     UpdateStability(filtered_raw);
 
