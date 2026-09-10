@@ -37,25 +37,21 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart, uint8_t output_enabled)
         (void)WeightProcessor_UpdateTimed(value, HAL_GetTick(), &result);
         if (output_enabled) {
             int64_t weight_magnitude;
-            long weight_whole;
-            long weight_fraction;
 
-            weight_magnitude = result.weight_x10;
+            weight_magnitude = result.weight_x1000;
             if (weight_magnitude < 0) {
                 weight_magnitude = -weight_magnitude;
-                weight_whole = (long)(weight_magnitude / 10L);
-                weight_fraction = (long)(weight_magnitude % 10L);
-                length = snprintf(line, sizeof(line), "%lu,%ld,-%ld.%ld\n",
+                length = snprintf(line, sizeof(line), "%lu,%ld,-%ld.%03ld\n",
                                   (unsigned long)raw24,
                                   (long)result.filtered_raw,
-                                  weight_whole, weight_fraction);
+                                  (long)(weight_magnitude / 1000L),
+                                  (long)(weight_magnitude % 1000L));
             } else {
-                weight_whole = (long)(weight_magnitude / 10L);
-                weight_fraction = (long)(weight_magnitude % 10L);
-                length = snprintf(line, sizeof(line), "%lu,%ld,%ld.%ld\n",
+                length = snprintf(line, sizeof(line), "%lu,%ld,%ld.%03ld\n",
                                   (unsigned long)raw24,
                                   (long)result.filtered_raw,
-                                  weight_whole, weight_fraction);
+                                  (long)(weight_magnitude / 1000L),
+                                  (long)(weight_magnitude % 1000L));
             }
             if (length > 0) {
                 (void)HAL_UART_Transmit(huart, (uint8_t *)line,

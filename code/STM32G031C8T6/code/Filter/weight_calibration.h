@@ -17,6 +17,8 @@ extern float g_weight_slope_g_per_count;
  * 输入单位为 ADS1232 counts，输出单位为0.1克。 */
 void WeightCalibration_Init(void);
 int32_t WeightCalibration_Convert(int32_t raw_counts);
+/* 按0.001克输出，保留ADS1232计数换算后的有效小数位。 */
+int32_t WeightCalibration_ConvertX1000(int32_t raw_counts);
 void WeightCalibration_SetZeroShift(int32_t shift_counts);
 int32_t WeightCalibration_GetZeroShift(void);
 int32_t WeightCalibration_GetZeroRaw(void);

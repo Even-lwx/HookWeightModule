@@ -154,6 +154,17 @@ int32_t WeightCalibration_Convert(int32_t raw_counts)
     return (value >= 0.0f) ? (int32_t)(value + 0.5f) : (int32_t)(value - 0.5f);
 }
 
+int32_t WeightCalibration_ConvertX1000(int32_t raw_counts)
+{
+    float value;
+
+    /* ADS1232每个计数约对应0.00187克，因此内部保留到0.001克。 */
+    value = ((float)(raw_counts - zero_shift_counts) *
+             g_weight_slope_g_per_count + g_weight_output_offset_g) * 1000.0f;
+    return (value >= 0.0f) ? (int32_t)(value + 0.5f) :
+                             (int32_t)(value - 0.5f);
+}
+
 /* Flash 参数镜像，末尾 CRC 用于检测掉电写入或数据损坏。 */
 typedef struct { uint32_t magic; uint16_t version; uint16_t size; int32_t zero;
                 float slope; float offset; uint32_t manual; uint32_t crc; } CalFlash;
