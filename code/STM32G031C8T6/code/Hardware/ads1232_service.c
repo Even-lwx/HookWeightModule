@@ -41,14 +41,17 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart, uint8_t output_enabled)
             weight_magnitude = result.weight_x1000;
             if (weight_magnitude < 0) {
                 weight_magnitude = -weight_magnitude;
-                length = snprintf(line, sizeof(line), "%lu,%ld,-%ld.%03ld\n",
-                                  (unsigned long)raw24,
+                /* 列顺序：原始ADC、5点中值、卡尔曼滤波ADC、重量（克，3位小数） */
+                length = snprintf(line, sizeof(line), "%ld,%ld,%ld,-%ld.%03ld\n",
+                                  (long)value,
+                                  (long)result.median_raw,
                                   (long)result.filtered_raw,
                                   (long)(weight_magnitude / 1000L),
                                   (long)(weight_magnitude % 1000L));
             } else {
-                length = snprintf(line, sizeof(line), "%lu,%ld,%ld.%03ld\n",
-                                  (unsigned long)raw24,
+                length = snprintf(line, sizeof(line), "%ld,%ld,%ld,%ld.%03ld\n",
+                                  (long)value,
+                                  (long)result.median_raw,
                                   (long)result.filtered_raw,
                                   (long)(weight_magnitude / 1000L),
                                   (long)(weight_magnitude % 1000L));

@@ -306,6 +306,7 @@ uint8_t WeightProcessor_UpdateTimed(int32_t raw, uint32_t elapsed_ms,
 
     result->raw = raw;
     result->filtered_raw = filtered_raw;
+    result->median_raw = median_raw;
     result->weight_x10 = weight_x10;
     result->weight_x1000 = weight_x1000;
     result->ready = processor.ready;

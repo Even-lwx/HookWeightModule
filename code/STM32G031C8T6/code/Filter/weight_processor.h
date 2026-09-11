@@ -10,6 +10,7 @@ extern "C" {
 typedef struct {
     int32_t raw;
     int32_t filtered_raw;
+    int32_t median_raw;   /* 第一级5点中值滤波结果（卡尔曼之前），用于上位机观察对比 */
     int32_t weight_x10;
     int32_t weight_x1000;
     uint8_t ready;
