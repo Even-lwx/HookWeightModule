@@ -26,8 +26,8 @@ uint8_t WeightStorage_ReadBegin(uint32_t n){
     uint32_t p,s,k,prev=EMPTY,b=0UL; const WeightStorage_Record*r;
     if(busy)return 0U;
     rlimit=(n==0UL||n>count)?count:n; rdone=0UL; rstart=0UL; rlast=0UL;
-    /* Keep the existing "latest N" behavior, but remember the oldest
-       sequence in that set so ReadNext can emit the set in ascending order. */
+    /* 保留原有的“最新 N 条”行为，同时记录其中最旧的
+       序号，使 ReadNext 能按升序输出这一组记录。 */
     for(k=0UL;k<rlimit;++k){
         b=0UL;
         for(p=0UL;p<PAGE_COUNT;++p)if(p!=sp)for(s=0UL;s<PER_PAGE;++s){

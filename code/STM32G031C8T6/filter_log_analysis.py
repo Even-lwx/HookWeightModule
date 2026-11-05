@@ -51,8 +51,8 @@ def local_residuals(values, block=100):
         chunk = values[start:start + block]
         if len(chunk) < 20:
             continue
-        # Remove a linear trend inside each 10-second block so long thermal
-        # drift is not mistaken for sample noise.
+        # 在每个 10 秒数据块中去除线性趋势，防止长期热
+        # 漂移被误认为采样噪声。
         n = len(chunk)
         xm = (n - 1) / 2.0
         ym = sum(chunk) / n
@@ -82,7 +82,7 @@ noise_sd = statistics.pstdev(all_residuals)
 print("ALL noise_sd", noise_sd, "variance", noise_sd ** 2,
       "abs_p95", quantile([abs(x) for x in all_residuals], .95))
 
-# Compare candidate steady-state filters after excluding large transitions.
+# 排除大幅跳变后比较候选稳态滤波器。
 for q, r in [(4, 2500), (9, 2500), (16, 2500), (25, 2500),
              (16, 1600), (25, 1600), (36, 1600)]:
     residuals = []
@@ -96,7 +96,7 @@ for q, r in [(4, 2500), (9, 2500), (16, 2500), (25, 2500),
           "equiv_samples", round(1/k, 1),
           "filtered_local_sd", round(statistics.pstdev(residuals), 2))
 
-# Largest raw changes locate the load transitions in the new-PCB log.
+# 利用原始数据的最大变化定位新 PCB 日志中的负载跳变。
 for path, raw in loaded:
     if "1527" not in os.path.basename(path):
         continue

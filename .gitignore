@@ -1,4 +1,4 @@
-# OS and editor files
+# 操作系统和编辑器文件
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -8,13 +8,13 @@ desktop.ini
 *.bak
 ~$*
 
-# Altium generated history, previews, logs and output
+# Altium 生成的历史、预览、日志和输出
 **/History/
 **/__Previews/
 **/Project Logs*/
 **/Project Outputs*/
 
-# Keil / ARM compiler generated output
+# Keil 和 ARM 编译器生成的输出
 **/Objects/
 **/Listings/
 **/DebugConfig/
