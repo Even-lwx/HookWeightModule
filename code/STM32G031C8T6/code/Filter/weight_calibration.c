@@ -1,5 +1,6 @@
 #include "weight_calibration.h"
 #include "stm32g0xx_hal.h"
+#include "weight_storage.h"
 #include <string.h>
 
 #define WEIGHT_ZERO_NODE_COUNT 21U
@@ -37,7 +38,8 @@ static const WeightZeroNode flash_zero_profile[WEIGHT_ZERO_NODE_COUNT] = {
 #define LINEAR_COUNTS_DENOMINATOR   5357109L
 #define CAL_FLASH_ADDR              0x0800F800UL
 #define CAL_MAGIC                   0x5743414CUL
-#define CAL_VERSION                 1U
+#define CAL_VERSION                 2U
+#define STORAGE_DEFAULT_PERIOD_MS  60000UL
 
 static int32_t zero_shift_counts;
 float g_weight_slope_g_per_count = (float)LINEAR_WEIGHT_NUMERATOR /
@@ -167,7 +169,8 @@ int32_t WeightCalibration_ConvertX1000(int32_t raw_counts)
 
 /* Flash 参数镜像，末尾 CRC 用于检测掉电写入或数据损坏。 */
 typedef struct { uint32_t magic; uint16_t version; uint16_t size; int32_t zero;
-                float slope; float offset; uint32_t manual; uint32_t crc; } CalFlash;
+                float slope; float offset; uint32_t manual; uint32_t interval_ms;
+                uint32_t reserved; uint32_t crc; } CalFlash;
 
 static uint32_t CalCrc(const CalFlash *p)
 {
@@ -183,7 +186,8 @@ uint8_t WeightCalibration_Save(void)
     CalFlash p; uint32_t i, page_error; HAL_StatusTypeDef st; FLASH_EraseInitTypeDef erase;
     p.magic = CAL_MAGIC; p.version = CAL_VERSION; p.size = sizeof(CalFlash);
     p.zero = zero_shift_counts; p.slope = g_weight_slope_g_per_count;
-    p.offset = g_weight_output_offset_g; p.manual = manual_valid; p.crc = CalCrc(&p);
+    p.offset = g_weight_output_offset_g; p.manual = manual_valid;
+    p.interval_ms = WeightStorage_GetIntervalMs(); p.reserved = 0UL; p.crc = CalCrc(&p);
     erase.TypeErase = FLASH_TYPEERASE_PAGES; erase.Banks = FLASH_BANK_1; erase.Page = 31U; erase.NbPages = 1U;
     HAL_FLASH_Unlock();
     st = HAL_FLASHEx_Erase(&erase, &page_error);
@@ -196,7 +200,12 @@ uint8_t WeightCalibration_Load(void)
 {
     /* 启动时只接受 magic、版本、长度、CRC 和斜率都有效的参数。 */
     const CalFlash *p = (const CalFlash *)CAL_FLASH_ADDR;
+    uint32_t interval_ms;
     if (p->magic != CAL_MAGIC || p->version != CAL_VERSION || p->size != sizeof(CalFlash) || p->crc != CalCrc(p) || p->slope <= 0.0f) return 0U;
     zero_shift_counts = p->zero; g_weight_slope_g_per_count = p->slope;
-    g_weight_output_offset_g = p->offset; manual_valid = p->manual ? 1U : 0U; return 1U;
+    g_weight_output_offset_g = p->offset; manual_valid = p->manual ? 1U : 0U;
+    interval_ms = p->interval_ms;
+    if (interval_ms < 100UL || interval_ms > 600000UL) interval_ms = STORAGE_DEFAULT_PERIOD_MS;
+    (void)WeightStorage_SetIntervalMs(interval_ms);
+    return 1U;
 }

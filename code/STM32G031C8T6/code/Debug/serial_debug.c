@@ -1,6 +1,7 @@
 #include "serial_debug.h"
 #include "weight_processor.h"
 #include "weight_calibration.h"
+#include "weight_storage.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,9 +32,11 @@ static void ReplyHelp(void)
     Reply("point <grams>      add a stable calibration point\r\n");
     Reply("end               fit slope and apply calibration\r\n");
     Reply("cancel            cancel slope calibration\r\n");
-    Reply("save              save changed parameters to Flash\r\n");
     Reply("flash             read and print Flash parameters\r\n");
-    Reply("NOTE: calibration changes are RAM-only until 'save'.\r\n");
+    Reply("history [N]        read Flash history records\r\n");
+    Reply("history clear      erase all history records\r\n");
+    Reply("interval <seconds> set storage interval (0.1-600s)\r\n");
+    Reply("NOTE: calibration and interval changes are saved automatically.\r\n");
 }
 static uint8_t Stable(int32_t *raw) { const WeightProcessor_Result *r=WeightProcessor_GetLastResult(); if(!r->ready)return 0U; if(!WeightProcessor_IsCalibrationStable())return 0U; *raw=r->filtered_raw; return 1U; }
 /* 将命令参数转换为浮点数，并拒绝空参数、非法字符和无穷值。 */
@@ -85,14 +88,35 @@ static void Command(char *cmd)
     if(!debug_mode){Reply("ERR NOT_DEBUG\r\n");return;}
     if(!strcmp(cmd,"help")){if(arg){Reply("ERR BAD_PARAM\r\n");return;}ReplyHelp();return;}
     if(!strcmp(cmd,"cancel")){slope_mode=0U;point_count=0U;Reply("OK CANCEL\r\n");return;}
-    if(!strcmp(cmd,"zero")){if(arg||!Stable(&raw)){Reply(arg?"ERR BAD_PARAM\r\n":"ERR NOT_STABLE\r\n");return;} WeightCalibration_SetParameters(raw,WeightCalibration_GetSlope(),0.0f); {char b[96];snprintf(b,sizeof(b),"OK ZERO raw=%ld; SAVE REQUIRED\r\n",(long)raw);Reply(b);}return;}
-    if(!strcmp(cmd,"cal")){if(!arg||!ParseFloat(arg,&g)){Reply("ERR BAD_PARAM\r\n");return;}if(!Stable(&raw)){Reply("ERR NOT_STABLE\r\n");return;}WeightCalibration_SetParameters(WeightCalibration_GetZeroRaw(),WeightCalibration_GetSlope(),g-(raw-WeightCalibration_GetZeroRaw())*WeightCalibration_GetSlope());Reply("OK CAL; SAVE REQUIRED\r\n");return;}
+    if(!strcmp(cmd,"zero")){if(arg||!Stable(&raw)){Reply(arg?"ERR BAD_PARAM\r\n":"ERR NOT_STABLE\r\n");return;} WeightCalibration_SetParameters(raw,WeightCalibration_GetSlope(),0.0f); Reply(WeightCalibration_Save()?"OK ZERO SAVED\r\n":"ERR FLASH_WRITE\r\n");return;}
+    if(!strcmp(cmd,"cal")){if(!arg||!ParseFloat(arg,&g)){Reply("ERR BAD_PARAM\r\n");return;}if(!Stable(&raw)){Reply("ERR NOT_STABLE\r\n");return;}WeightCalibration_SetParameters(WeightCalibration_GetZeroRaw(),WeightCalibration_GetSlope(),g-(raw-WeightCalibration_GetZeroRaw())*WeightCalibration_GetSlope());Reply(WeightCalibration_Save()?"OK CAL SAVED\r\n":"ERR FLASH_WRITE\r\n");return;}
     if(!strcmp(cmd,"slope")){if(arg){Reply("ERR BAD_PARAM\r\n");return;}if(slope_mode){Reply("ERR SLOPE_ACTIVE\r\n");return;}slope_mode=1U;point_count=0U;Reply("OK SLOPE\r\n");return;}
     if(!strcmp(cmd,"point")){if(!slope_mode){Reply("ERR SLOPE_NOT_ACTIVE\r\n");return;}if(!arg||!ParseFloat(arg,&g)){Reply("ERR BAD_PARAM\r\n");return;}if(point_count>=MAX_POINTS){Reply("ERR TOO_MANY_POINTS\r\n");return;}if(!Stable(&raw)){Reply("ERR NOT_STABLE\r\n");return;}points[point_count].raw=raw;points[point_count++].grams=g;Reply("OK POINT\r\n");return;}
     /* 最小二乘拟合 grams = slope * raw + intercept，至少需要两个不同原始值。 */
-    if(!strcmp(cmd,"end")){uint8_t i;double sx=0,sy=0,sxx=0,sxy=0,d,a,b; if(!slope_mode){Reply("ERR SLOPE_NOT_ACTIVE\r\n");return;}if(point_count<2U){Reply("ERR TOO_FEW_POINTS\r\n");return;}for(i=0;i<point_count;i++){double x=points[i].raw,y=points[i].grams;sx+=x;sy+=y;sxx+=x*x;sxy+=x*y;}d=point_count*sxx-sx*sx;if(fabs(d)<1e-9){Reply("ERR BAD_SLOPE\r\n");return;}a=(point_count*sxy-sx*sy)/d;b=(sy-a*sx)/point_count;if(a<=0){Reply("ERR BAD_SLOPE\r\n");return;}WeightCalibration_SetParameters((int32_t)(-b/a), (float)a, 0.0f);slope_mode=0U;{char out[96];snprintf(out,sizeof(out),"OK SLOPE_END points=%u slope=%.8f; SAVE REQUIRED\r\n",point_count,a);Reply(out);}return;}
-    if(!strcmp(cmd,"save")){if(arg){Reply("ERR BAD_PARAM\r\n");return;}Reply(WeightCalibration_Save()?"OK SAVE (parameters active and persistent)\r\n":"ERR FLASH_WRITE\r\n");return;}
+    if(!strcmp(cmd,"end")){uint8_t i;double sx=0,sy=0,sxx=0,sxy=0,d,a,b; if(!slope_mode){Reply("ERR SLOPE_NOT_ACTIVE\r\n");return;}if(point_count<2U){Reply("ERR TOO_FEW_POINTS\r\n");return;}for(i=0;i<point_count;i++){double x=points[i].raw,y=points[i].grams;sx+=x;sy+=y;sxx+=x*x;sxy+=x*y;}d=point_count*sxx-sx*sx;if(fabs(d)<1e-9){Reply("ERR BAD_SLOPE\r\n");return;}a=(point_count*sxy-sx*sy)/d;b=(sy-a*sx)/point_count;if(a<=0){Reply("ERR BAD_SLOPE\r\n");return;}WeightCalibration_SetParameters((int32_t)(-b/a), (float)a, 0.0f);slope_mode=0U;if(!WeightCalibration_Save()){Reply("ERR FLASH_WRITE\r\n");return;}{char out[96];snprintf(out,sizeof(out),"OK SLOPE_END points=%u SAVED\r\n",point_count);Reply(out);}return;}
+    if(!strcmp(cmd,"save")){Reply("ERR COMMAND_REMOVED\r\n");return;}
     if(!strcmp(cmd,"flash")){const char *v=WeightCalibration_FlashValid()?"valid":"invalid";char out[128];if(arg){Reply("ERR BAD_PARAM\r\n");return;}snprintf(out,sizeof(out),"OK FLASH status=%s zero=%ld slope=%.8f offset=%.3f\r\n",v,(long)WeightCalibration_GetZeroRaw(),WeightCalibration_GetSlope(),WeightCalibration_GetOffset());Reply(out);return;}
+    if(!strcmp(cmd,"history")){
+        uint32_t limit=0UL,value; char *e; WeightStorage_Record rec; char out[96]; int n; int64_t w; uint64_t m;
+        if(arg&&!strcmp(arg,"clear")){Reply(WeightStorage_Clear()?"OK HISTORY_CLEARED\r\n":"ERR HISTORY_BUSY\r\n");return;}
+        if(arg){ while(*arg==' ')++arg; value=strtoul(arg,&e,10); while(*e==' ')++e; if(!*arg||*e!='\0'||value==0UL){Reply("ERR BAD_PARAM\r\n");return;} limit=value; }
+        if(!WeightStorage_ReadBegin(limit)){Reply("ERR HISTORY_BUSY\r\n");return;}
+        n=snprintf(out,sizeof(out),"OK HISTORY_BEGIN,count=%lu\n",(unsigned long)((limit==0UL||limit>WeightStorage_GetRecordCount())?WeightStorage_GetRecordCount():limit)); if(n>0)Reply(out); Reply("sequence,session_id,minute,weight_g\n");
+        while(WeightStorage_ReadNext(&rec)){
+            /* 历史读取让出写入优先权：到达一分钟时先保存最新重量。 */
+            { const WeightProcessor_Result *latest=WeightProcessor_GetLastResult();
+              if(latest->ready) (void)WeightStorage_Task(HAL_GetTick(), latest->weight_x1000); }
+            w=rec.weight_x1000; if(w<0){m=(uint64_t)(-w); n=snprintf(out,sizeof(out),"%lu,%lu,%lu,-%lu.%03lu\n",(unsigned long)rec.sequence,(unsigned long)rec.session_id,(unsigned long)rec.minute,(unsigned long)(m/1000ULL),(unsigned long)(m%1000ULL));}else{m=(uint64_t)w; n=snprintf(out,sizeof(out),"%lu,%lu,%lu,%lu.%03lu\n",(unsigned long)rec.sequence,(unsigned long)rec.session_id,(unsigned long)rec.minute,(unsigned long)(m/1000ULL),(unsigned long)(m%1000ULL));}if(n>0)Reply(out);}
+        WeightStorage_ReadEnd(); Reply("OK HISTORY_END\n"); return;
+    }
+    if(!strcmp(cmd,"interval")){
+        float seconds; uint32_t ms; char out[64];
+        if(!arg||!ParseFloat(arg,&seconds)||seconds<0.1f||seconds>600.0f){Reply("ERR BAD_PARAM\r\n");return;}
+        ms=(uint32_t)(seconds*1000.0f+0.5f);
+        if(!WeightStorage_SetIntervalMs(ms)){Reply("ERR BAD_PARAM\r\n");return;}
+        if(!WeightCalibration_Save()){Reply("ERR FLASH_WRITE\r\n");return;}
+        snprintf(out,sizeof(out),"OK INTERVAL %.3fs\r\n",(double)WeightStorage_GetIntervalMs()/1000.0); Reply(out); return;
+    }
     Reply("ERR BAD_CMD\r\n");
 }
 /* 初始化 UART 单字节接收中断。 */

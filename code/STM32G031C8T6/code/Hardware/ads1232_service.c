@@ -1,6 +1,7 @@
 #include "ads1232_service.h"
 #include "ads1232.h"
 #include "weight_processor.h"
+#include "weight_storage.h"
 #include <stdio.h>
 #include <stddef.h>
 
@@ -35,6 +36,7 @@ void ADS1232_Service10Hz(UART_HandleTypeDef *huart, uint8_t output_enabled)
         /* 获取单片机上电后的运行时间，用于查找 Flash 中保存的动态零点。
          * 当前采样值可能已经包含负载，因此绝不使用当前值自动修正零点。 */
         (void)WeightProcessor_UpdateTimed(value, HAL_GetTick(), &result);
+        (void)WeightStorage_Task(HAL_GetTick(), result.weight_x1000);
         if (output_enabled) {
             int64_t weight_magnitude;
 

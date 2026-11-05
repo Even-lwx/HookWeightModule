@@ -1,0 +1,32 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*.tmp
+*.bak
+~$*
+
+# Altium generated history, previews, logs and output
+**/History/
+**/__Previews/
+**/Project Logs*/
+**/Project Outputs*/
+
+# Keil / ARM compiler generated output
+**/Objects/
+**/Listings/
+**/DebugConfig/
+**/RTE/
+**/*.uvoptx
+**/*.uvguix*
+**/*.axf
+**/*.elf
+**/*.hex
+**/*.bin
+**/*.map
+**/*.lst
+**/*.log
+analysis_output*/
+**/log/
