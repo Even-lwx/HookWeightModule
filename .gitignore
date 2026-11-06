@@ -30,3 +30,6 @@ desktop.ini
 **/*.log
 analysis_output*/
 **/log/
+
+# 整理后的本地实验报告
+/output/

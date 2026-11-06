@@ -6,7 +6,7 @@
 
 - `code/STM32G031C8T6/`：固件、ADS1232 驱动、重量滤波和校准存储。
 - `pcb/ADS1232/`：原理图、PCB 和元件库。
-- `analysis_output*/`：本地分析输出目录，不属于工程源文件。
+- `output/reports/analysis_output*/`：按原实验批次保留的分析报告与统计结果。
 
 ## 固件功能
 
